@@ -1,2 +1,2 @@
-﻿using var game = new Grinderino.Game1();
+using var game = new Grinderino.GrinderinoGame();
 game.Run();
