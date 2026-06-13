@@ -184,7 +184,7 @@ public class ShedScreen : IScreen
                 Color.Yellow * alpha);
         }
 
-        DrawHelper.DrawButton(sb, _font, _btnBack, "← Back",
+        DrawHelper.DrawButton(sb, _font, _btnBack, "< Back",
             new Color(30, 30, 40), Color.SlateBlue, Color.White,
             DrawHelper.IsHovered(_btnBack, ms));
     }

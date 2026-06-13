@@ -43,7 +43,7 @@ public class GraphsScreen : IScreen
 
         if (history.Count == 0)
         {
-            string msg = "No runs yet — go dig something!";
+            string msg = "No runs yet - go dig something!";
             Vector2 ms2 = _font.MeasureString(msg);
             sb.DrawString(_font, msg,
                 new Vector2(w / 2f - ms2.X / 2f, h / 2f - 20), Color.Gray);
@@ -86,7 +86,7 @@ public class GraphsScreen : IScreen
         }
 
         MouseState ms = Mouse.GetState();
-        DrawHelper.DrawButton(sb, _font, _btnBack, "← Menu",
+        DrawHelper.DrawButton(sb, _font, _btnBack, "< Menu",
             new Color(30, 30, 40), Color.SlateBlue, Color.White,
             DrawHelper.IsHovered(_btnBack, ms));
     }
