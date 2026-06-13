@@ -76,7 +76,7 @@ public class LobbyScreen : IScreen
 
         MouseState ms = Mouse.GetState();
         DrawHelper.DrawButton(sb, _font, _btnShed,
-            "⚒  Upgrade Shed", new Color(60, 40, 20), new Color(180, 130, 60),
+            "Upgrade Shed", new Color(60, 40, 20), new Color(180, 130, 60),
             Color.White, DrawHelper.IsHovered(_btnShed, ms));
 
         DrawHelper.DrawButton(sb, _font, _btnMarket,
@@ -84,11 +84,11 @@ public class LobbyScreen : IScreen
             Color.White, DrawHelper.IsHovered(_btnMarket, ms));
 
         DrawHelper.DrawButton(sb, _font, _btnMine,
-            "▼ Go Mining!", new Color(80, 40, 0), new Color(200, 100, 20),
+            "Go Mining!", new Color(80, 40, 0), new Color(200, 100, 20),
             Color.White, DrawHelper.IsHovered(_btnMine, ms));
 
         DrawHelper.DrawButton(sb, _font, _btnBack,
-            "← Menu", new Color(30, 30, 40), Color.SlateBlue,
+            "< Menu", new Color(30, 30, 40), Color.SlateBlue,
             Color.White, DrawHelper.IsHovered(_btnBack, ms));
     }
 }

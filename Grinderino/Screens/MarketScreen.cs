@@ -146,7 +146,7 @@ public class MarketScreen : IScreen
 
         if (_game.SaveData.HasMetalDetector)
         {
-            sb.DrawString(_font, "✓ Metal Detector owned",
+            sb.DrawString(_font, "Metal Detector owned",
                 new Vector2(_game.ScreenWidth - 350, 210), Color.LimeGreen);
         }
         else
@@ -167,7 +167,7 @@ public class MarketScreen : IScreen
                 Color.Yellow * alpha);
         }
 
-        DrawHelper.DrawButton(sb, _font, _btnBack, "← Back",
+        DrawHelper.DrawButton(sb, _font, _btnBack, "< Back",
             new Color(30, 30, 40), Color.SlateBlue, Color.White,
             DrawHelper.IsHovered(_btnBack, ms));
     }

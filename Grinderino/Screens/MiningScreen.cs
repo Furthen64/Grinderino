@@ -383,7 +383,7 @@ public class MiningScreen : IScreen
                         BlockType.CoalOre    => "C",
                         BlockType.IronOre    => "Fe",
                         BlockType.GoldOre    => "Au",
-                        BlockType.DiamondOre => "◆",
+                        BlockType.DiamondOre => "*",
                         BlockType.Treasure   => "!",
                         _                    => ""
                     };
@@ -459,7 +459,7 @@ public class MiningScreen : IScreen
 
         // Return button
         MouseState ms = Mouse.GetState();
-        DrawHelper.DrawButton(sb, _font, _btnSurface, "↑ Surface",
+        DrawHelper.DrawButton(sb, _font, _btnSurface, "^ Surface",
             new Color(60, 40, 10), new Color(200, 140, 50),
             Color.White, DrawHelper.IsHovered(_btnSurface, ms));
 
