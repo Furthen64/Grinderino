@@ -32,12 +32,15 @@ public class GraphsScreen : IScreen
         int w = _game.ScreenWidth;
         int h = _game.ScreenHeight;
 
-        DrawHelper.FillRect(sb, new Rectangle(0, 0, w, h), new Color(15, 15, 30));
+        DrawHelper.FillVerticalGradient(sb, new Rectangle(0, 0, w, h),
+            new Color(16, 18, 34), new Color(10, 10, 18));
+        DrawHelper.DrawPanel(sb, new Rectangle(36, 92, w - 72, h - 128),
+            new Color(18, 18, 30), new Color(120, 100, 190));
 
         string title = "Run History";
         Vector2 ts = _titleFont.MeasureString(title);
-        sb.DrawString(_titleFont, title,
-            new Vector2(w / 2f - ts.X / 2f, 30), new Color(160, 100, 255));
+        DrawHelper.DrawTextShadow(sb, _titleFont, title,
+            new Vector2(w / 2f - ts.X / 2f, 34), new Color(188, 140, 255));
 
         var history = _game.SaveData.RunHistory;
 
@@ -45,7 +48,7 @@ public class GraphsScreen : IScreen
         {
             string msg = "No runs yet - go dig something!";
             Vector2 ms2 = _font.MeasureString(msg);
-            sb.DrawString(_font, msg,
+            DrawHelper.DrawTextShadow(sb, _font, msg,
                 new Vector2(w / 2f - ms2.X / 2f, h / 2f - 20), Color.Gray);
         }
         else

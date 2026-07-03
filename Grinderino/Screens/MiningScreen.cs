@@ -328,7 +328,8 @@ public class MiningScreen : IScreen
         int sh = _game.ScreenHeight;
 
         // Sky
-        DrawHelper.FillRect(sb, new Rectangle(0, 0, sw, sh), new Color(100, 160, 220));
+        DrawHelper.FillVerticalGradient(sb, new Rectangle(0, 0, sw, sh),
+            new Color(118, 188, 246), new Color(58, 84, 124));
 
         // Calculate visible tile range
         int camX = (int)_camera.X;
@@ -347,8 +348,9 @@ public class MiningScreen : IScreen
         // Underground background
         int undergroundScreenY = Math.Max(0, -camY);
         if (undergroundScreenY < sh)
-            DrawHelper.FillRect(sb, new Rectangle(0, undergroundScreenY, sw, sh - undergroundScreenY),
-                new Color(30, 20, 10));
+            DrawHelper.FillVerticalGradient(sb,
+                new Rectangle(0, undergroundScreenY, sw, sh - undergroundScreenY),
+                new Color(52, 34, 18), new Color(24, 16, 10));
 
         for (int bx = startTileX; bx <= endTileX; bx++)
         {
@@ -370,8 +372,10 @@ public class MiningScreen : IScreen
                     continue;
                 }
 
-                DrawHelper.FillRect(sb, screenRect, BlockData.GetColor(t));
-                DrawHelper.DrawRect(sb, screenRect, new Color(0, 0, 0, 80), 1);
+                Color blockColor = BlockData.GetColor(t);
+                DrawHelper.FillRect(sb, screenRect, blockColor);
+                DrawHelper.FillRect(sb, new Rectangle(sx, sy, World.BlockSize, 4), new Color(255, 255, 255, 28));
+                DrawHelper.DrawRect(sb, screenRect, new Color(0, 0, 0, 90), 1);
 
                 // Ore label
                 if (t == BlockType.CoalOre || t == BlockType.IronOre ||
@@ -436,22 +440,24 @@ public class MiningScreen : IScreen
     {
         // Top bar
         DrawHelper.FillRect(sb, new Rectangle(0, 0, sw, 48), new Color(0, 0, 0, 160));
+        DrawHelper.FillRect(sb, new Rectangle(0, 48, sw, 2), new Color(255, 255, 255, 35));
 
         int depthBlocks = (int)(_player.Position.Y / World.BlockSize);
         int depthMeters = depthBlocks * 2;
-        sb.DrawString(_font, $"Depth: {depthMeters}m", new Vector2(10, 14), Color.Cyan);
-        sb.DrawString(_font, $"$ {_game.SaveData.Money:N0}", new Vector2(200, 14), new Color(255, 215, 0));
+        DrawHelper.DrawTextShadow(sb, _font, $"Depth: {depthMeters}m", new Vector2(10, 14), Color.Cyan);
+        DrawHelper.DrawTextShadow(sb, _font, $"$ {_game.SaveData.Money:N0}", new Vector2(200, 14), new Color(255, 215, 0));
 
         Tool tool = _game.SaveData.CurrentTool;
-        sb.DrawString(_font, $"Tool: {tool.Name}  Pwr:{tool.EffectivePower}",
+        DrawHelper.DrawTextShadow(sb, _font, $"Tool: {tool.Name}  Pwr:{tool.EffectivePower}",
             new Vector2(sw / 2f - 100, 14), Color.LightBlue);
 
         if (_game.SaveData.HasMetalDetector)
-            sb.DrawString(_font, "[Metal Detector]", new Vector2(sw - 300, 14), new Color(100, 220, 255));
+            DrawHelper.DrawTextShadow(sb, _font, "[Metal Detector]", new Vector2(sw - 300, 14), new Color(100, 220, 255));
 
         // Inventory summary
+        DrawHelper.FillRect(sb, new Rectangle(8, sh - 38, sw - 16, 28), new Color(0, 0, 0, 110));
         sb.DrawString(_font, $"Bag: {GetInventorySummary()}",
-            new Vector2(10, sh - 30), Color.White);
+            new Vector2(14, sh - 30), Color.White);
 
         // Controls hint
         sb.DrawString(_font, "A/D:Move  W/Space:Jump  Z:Mine  S:Dig Down",
