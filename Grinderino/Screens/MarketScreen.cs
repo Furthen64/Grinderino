@@ -100,15 +100,20 @@ public class MarketScreen : IScreen
         int w = _game.ScreenWidth;
         int h = _game.ScreenHeight;
 
-        DrawHelper.FillRect(sb, new Rectangle(0, 0, w, h), new Color(15, 30, 15));
+        DrawHelper.FillVerticalGradient(sb, new Rectangle(0, 0, w, h),
+            new Color(18, 34, 18), new Color(8, 14, 8));
+        DrawHelper.DrawPanel(sb, new Rectangle(44, 96, 380, h - 150),
+            new Color(18, 28, 18), new Color(74, 124, 74));
+        DrawHelper.DrawPanel(sb, new Rectangle(w - 404, 136, 360, 220),
+            new Color(20, 22, 40), new Color(96, 116, 176));
 
         string title = "Market";
         Vector2 ts = _titleFont.MeasureString(title);
-        sb.DrawString(_titleFont, title,
-            new Vector2(w / 2f - ts.X / 2f, 30), new Color(100, 220, 100));
+        DrawHelper.DrawTextShadow(sb, _titleFont, title,
+            new Vector2(w / 2f - ts.X / 2f, 34), new Color(120, 240, 120));
 
         string money = $"$ {_game.SaveData.Money:N0}";
-        sb.DrawString(_font, money, new Vector2(w - 220, 20), new Color(255, 215, 0));
+        DrawHelper.DrawTextShadow(sb, _font, money, new Vector2(w - 220, 20), new Color(255, 215, 0));
 
         sb.DrawString(_font, "Your Inventory:", new Vector2(80, 160), Color.LightGreen);
 

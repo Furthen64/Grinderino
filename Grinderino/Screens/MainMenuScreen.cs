@@ -63,24 +63,25 @@ public class MainMenuScreen : IScreen
         int w = _game.ScreenWidth;
         int h = _game.ScreenHeight;
 
-        DrawHelper.FillRect(sb, new Rectangle(0, 0, w, h), new Color(15, 20, 35));
+        DrawHelper.FillVerticalGradient(sb, new Rectangle(0, 0, w, h),
+            new Color(18, 24, 44), new Color(8, 10, 18));
+        DrawHelper.FillRect(sb, new Rectangle(0, h - 120, w, 120), new Color(60, 38, 16));
+        DrawHelper.FillRect(sb, new Rectangle(0, h - 122, w, 4), new Color(126, 86, 38));
 
-        // Decorative ground strip
-        DrawHelper.FillRect(sb, new Rectangle(0, h - 80, w, 80), new Color(80, 50, 20));
-        DrawHelper.FillRect(sb, new Rectangle(0, h - 80, w, 4), new Color(100, 70, 30));
+        DrawHelper.DrawPanel(sb, new Rectangle(w / 2 - 360, 44, 720, 160),
+            new Color(20, 24, 40), new Color(90, 100, 140));
+        DrawHelper.DrawPanel(sb, new Rectangle(w / 2 - 170, 230, 340, 300),
+            new Color(18, 20, 32), new Color(120, 130, 170));
 
-        // Title
         string title = "GRINDERINO";
         Vector2 ts = _titleFont.MeasureString(title);
-        sb.DrawString(_titleFont, title,
-            new Vector2(w / 2f - ts.X / 2f, 80),
-            new Color(255, 215, 0));
+        DrawHelper.DrawTextShadow(sb, _titleFont, title,
+            new Vector2(w / 2f - ts.X / 2f, 78), new Color(255, 214, 102));
 
         string sub = "Mine. Dig. Sell. Upgrade.";
         Vector2 ss = _font.MeasureString(sub);
-        sb.DrawString(_font, sub,
-            new Vector2(w / 2f - ss.X / 2f, 160),
-            new Color(180, 180, 200));
+        DrawHelper.DrawTextShadow(sb, _font, sub,
+            new Vector2(w / 2f - ss.X / 2f, 150), new Color(190, 198, 220));
 
         MouseState ms = Mouse.GetState();
         bool canContinue = _game.SaveData.HasSave;

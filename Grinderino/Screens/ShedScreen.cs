@@ -123,26 +123,30 @@ public class ShedScreen : IScreen
         int w = _game.ScreenWidth;
         int h = _game.ScreenHeight;
 
-        DrawHelper.FillRect(sb, new Rectangle(0, 0, w, h), new Color(30, 20, 10));
+        DrawHelper.FillVerticalGradient(sb, new Rectangle(0, 0, w, h),
+            new Color(34, 22, 12), new Color(14, 10, 8));
+        DrawHelper.DrawPanel(sb, new Rectangle(44, 96, w - 88, h - 150),
+            new Color(28, 18, 10), new Color(146, 106, 56));
+        DrawHelper.DrawPanel(sb, new Rectangle(60, 130, 360, 100),
+            new Color(44, 28, 12), new Color(184, 136, 76));
 
         string title = "Upgrade Shed";
         Vector2 ts = _titleFont.MeasureString(title);
-        sb.DrawString(_titleFont, title,
-            new Vector2(w / 2f - ts.X / 2f, 30), new Color(220, 180, 80));
+        DrawHelper.DrawTextShadow(sb, _titleFont, title,
+            new Vector2(w / 2f - ts.X / 2f, 34), new Color(244, 198, 92));
 
         string money = $"$ {_game.SaveData.Money:N0}";
-        sb.DrawString(_font, money, new Vector2(w - 220, 20), new Color(255, 215, 0));
+        DrawHelper.DrawTextShadow(sb, _font, money, new Vector2(w - 220, 20), new Color(255, 215, 0));
 
         Tool tool = _game.SaveData.CurrentTool;
 
         // Current tool info panel
-        int panelX = 80, panelY = 130, panelW = 340, panelH = 70;
-        DrawHelper.FillRect(sb, new Rectangle(panelX, panelY, panelW, panelH), new Color(50, 30, 10));
-        DrawHelper.DrawRect(sb, new Rectangle(panelX, panelY, panelW, panelH), new Color(180, 130, 60));
-        sb.DrawString(_font, $"Current: {tool.Name}", new Vector2(panelX + 10, panelY + 8), Color.White);
+        Rectangle infoPanel = new Rectangle(80, 130, 340, 70);
+        DrawHelper.DrawPanel(sb, infoPanel, new Color(54, 34, 12), new Color(184, 130, 60));
+        sb.DrawString(_font, $"Current: {tool.Name}", new Vector2(infoPanel.X + 10, infoPanel.Y + 8), Color.White);
         sb.DrawString(_font,
             $"Power: {tool.EffectivePower}  Sharp:{tool.SharpnessLevel}/{tool.MaxSharpnessLevel}  Steel:{tool.SteelLevel}/{tool.MaxSteelLevel}",
-            new Vector2(panelX + 10, panelY + 34), Color.LightYellow);
+            new Vector2(infoPanel.X + 10, infoPanel.Y + 34), Color.LightYellow);
 
         // Upgrade section header
         sb.DrawString(_font, "-- Upgrades --", new Vector2(80, 185), new Color(220, 180, 80));

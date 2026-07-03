@@ -50,29 +50,28 @@ public class LobbyScreen : IScreen
         int w = _game.ScreenWidth;
         int h = _game.ScreenHeight;
 
-        DrawHelper.FillRect(sb, new Rectangle(0, 0, w, h), new Color(20, 25, 40));
+        DrawHelper.FillVerticalGradient(sb, new Rectangle(0, 0, w, h),
+            new Color(24, 30, 48), new Color(12, 14, 24));
+        DrawHelper.FillRect(sb, new Rectangle(0, h - 110, w, 110), new Color(70, 44, 18));
 
-        // Ground
-        DrawHelper.FillRect(sb, new Rectangle(0, h - 100, w, 100), new Color(80, 50, 20));
-        // Sky gradient hint
-        for (int i = 0; i < 80; i++)
-            DrawHelper.FillRect(sb, new Rectangle(0, i, w, 1),
-                new Color(20 + i / 3, 25 + i / 3, 60 + i));
+        DrawHelper.DrawPanel(sb, new Rectangle(w / 2 - 260, 42, 520, 90),
+            new Color(22, 24, 36), new Color(104, 116, 156));
+        DrawHelper.DrawPanel(sb, new Rectangle(w / 2 - 190, 210, 380, 280),
+            new Color(18, 20, 32), new Color(112, 126, 166));
 
         string title = "Base Camp";
         Vector2 ts = _titleFont.MeasureString(title);
-        sb.DrawString(_titleFont, title,
-            new Vector2(w / 2f - ts.X / 2f, 60),
-            new Color(220, 200, 150));
+        DrawHelper.DrawTextShadow(sb, _titleFont, title,
+            new Vector2(w / 2f - ts.X / 2f, 62), new Color(224, 205, 150));
 
         // Money display
         string money = $"$ {_game.SaveData.Money:N0}";
-        sb.DrawString(_font, money, new Vector2(w - 220, 20), new Color(255, 215, 0));
+        DrawHelper.DrawTextShadow(sb, _font, money, new Vector2(w - 220, 20), new Color(255, 215, 0));
 
         // Tool display
         string tool = $"Tool: {_game.SaveData.CurrentTool.Name}";
-        sb.DrawString(_font, tool, new Vector2(w / 2f - _font.MeasureString(tool).X / 2f, 150),
-            Color.LightBlue);
+        DrawHelper.DrawTextShadow(sb, _font, tool,
+            new Vector2(w / 2f - _font.MeasureString(tool).X / 2f, 148), Color.LightBlue);
 
         MouseState ms = Mouse.GetState();
         DrawHelper.DrawButton(sb, _font, _btnShed,
