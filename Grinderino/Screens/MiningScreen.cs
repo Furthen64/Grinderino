@@ -367,15 +367,14 @@ public class MiningScreen : IScreen
                 if (t == BlockType.Treasure && !_game.SaveData.HasMetalDetector)
                 {
                     // Draw as stone, undetected
-                    DrawHelper.FillRect(sb, screenRect, BlockData.GetColor(BlockType.Stone));
-                    DrawHelper.DrawRect(sb, screenRect, new Color(60, 60, 60), 1);
+                    DrawHelper.FillRectGritty(sb, screenRect, BlockData.GetColor(BlockType.Stone), bx, by);
+                    DrawHelper.DrawRect(sb, screenRect, new Color(50, 50, 48), 1);
                     continue;
                 }
 
                 Color blockColor = BlockData.GetColor(t);
-                DrawHelper.FillRect(sb, screenRect, blockColor);
-                DrawHelper.FillRect(sb, new Rectangle(sx, sy, World.BlockSize, 4), new Color(255, 255, 255, 28));
-                DrawHelper.DrawRect(sb, screenRect, new Color(0, 0, 0, 90), 1);
+                DrawHelper.FillRectGritty(sb, screenRect, blockColor, bx, by);
+                DrawHelper.DrawRect(sb, screenRect, new Color(0, 0, 0, 110), 1);
 
                 // Ore label
                 if (t == BlockType.CoalOre || t == BlockType.IronOre ||

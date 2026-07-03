@@ -34,14 +34,14 @@ public static class BlockData
     public static Color GetColor(BlockType type) => type switch
     {
         BlockType.Air        => Color.Transparent,
-        BlockType.Dirt       => new Color(139, 90, 43),
-        BlockType.Stone      => new Color(128, 128, 128),
-        BlockType.Bedrock    => new Color(40, 40, 40),
-        BlockType.CoalOre    => new Color(60, 60, 60),
-        BlockType.IronOre    => new Color(200, 160, 120),
-        BlockType.GoldOre    => new Color(255, 215, 0),
-        BlockType.DiamondOre => new Color(100, 220, 255),
-        BlockType.Treasure   => new Color(255, 140, 0),
+        BlockType.Dirt       => new Color(101, 67, 38),
+        BlockType.Stone      => new Color(104, 103, 98),
+        BlockType.Bedrock    => new Color(26, 26, 28),
+        BlockType.CoalOre    => new Color(38, 38, 40),
+        BlockType.IronOre    => new Color(150, 112, 90),
+        BlockType.GoldOre    => new Color(150, 120, 45),
+        BlockType.DiamondOre => new Color(120, 150, 155),
+        BlockType.Treasure   => new Color(120, 72, 24),
         _                    => Color.Purple
     };
 
