@@ -22,10 +22,12 @@ public static class DrawHelper
     public static void FillVerticalGradient(SpriteBatch sb, Rectangle rect, Color top, Color bottom)
     {
         if (rect.Height <= 0) return;
-        for (int y = 0; y < rect.Height; y++)
+        const int bandHeight = 4;
+        for (int y = 0; y < rect.Height; y += bandHeight)
         {
-            float t = rect.Height == 1 ? 0f : y / (float)(rect.Height - 1);
-            FillRect(sb, new Rectangle(rect.X, rect.Y + y, rect.Width, 1), Color.Lerp(top, bottom, t));
+            int h = System.Math.Min(bandHeight, rect.Height - y);
+            float t = rect.Height == 1 ? 0f : (y + h / 2f) / (rect.Height - 1);
+            FillRect(sb, new Rectangle(rect.X, rect.Y + y, rect.Width, h), Color.Lerp(top, bottom, t));
         }
     }
 

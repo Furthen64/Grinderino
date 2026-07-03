@@ -141,12 +141,12 @@ public class ShedScreen : IScreen
         Tool tool = _game.SaveData.CurrentTool;
 
         // Current tool info panel
-        int panelX = 80, panelY = 130, panelW = 340, panelH = 70;
-        DrawHelper.DrawPanel(sb, new Rectangle(panelX, panelY, panelW, panelH), new Color(54, 34, 12), new Color(184, 130, 60));
-        sb.DrawString(_font, $"Current: {tool.Name}", new Vector2(panelX + 10, panelY + 8), Color.White);
+        Rectangle infoPanel = new Rectangle(80, 130, 340, 70);
+        DrawHelper.DrawPanel(sb, infoPanel, new Color(54, 34, 12), new Color(184, 130, 60));
+        sb.DrawString(_font, $"Current: {tool.Name}", new Vector2(infoPanel.X + 10, infoPanel.Y + 8), Color.White);
         sb.DrawString(_font,
             $"Power: {tool.EffectivePower}  Sharp:{tool.SharpnessLevel}/{tool.MaxSharpnessLevel}  Steel:{tool.SteelLevel}/{tool.MaxSteelLevel}",
-            new Vector2(panelX + 10, panelY + 34), Color.LightYellow);
+            new Vector2(infoPanel.X + 10, infoPanel.Y + 34), Color.LightYellow);
 
         // Upgrade section header
         sb.DrawString(_font, "-- Upgrades --", new Vector2(80, 185), new Color(220, 180, 80));
